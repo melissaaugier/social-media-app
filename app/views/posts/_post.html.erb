@@ -1,0 +1,8 @@
+<li>
+  <%= post.user.name %>: <%= post.content %>
+  <% if post.image.attached? %>
+    <%= image_tag post.image %>
+  <% end %>
+  <button data-controller="like-button" data-action="click->like-button#like">Like</button>
+  <span data-like-button-target="likeCount">0</span>
+</li>

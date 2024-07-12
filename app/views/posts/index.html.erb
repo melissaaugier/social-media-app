@@ -1,0 +1,11 @@
+<h1>Posts</h1>
+
+<%= form_with model: Post.new, local: false do |form| %>
+    <%= form.file_field :image %>
+    <%= form.text_area :content, placeholder: "What's on your mind?" %>
+    <%= form.submit "Post" %>
+<% end %>
+
+<ul id="posts">
+    <%= render @posts %>
+</ul>
