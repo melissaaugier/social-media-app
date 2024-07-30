@@ -1,0 +1,24 @@
+@import "variables";
+
+// Import Bootstrap
+@import "bootstrap/scss/bootstrap";
+
+.bg-custom-gradient {
+    background: rgb(248,94,108);
+    background: linear-gradient(170deg, rgba(248,94,108,1) 0%, rgba(200,67,76,1) 96%);
+}
+
+.custom-rounded-end {
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+}
+
+@media (max-width: 767px) { /* Adjust breakpoint as needed */
+    .custom-rounded-end {
+        border-radius: 0.5rem; /* Adjust radius as needed */
+    }
+}
+
+.form-floating > label {
+    color: $gray;
+}

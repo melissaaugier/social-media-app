@@ -1,0 +1,25 @@
+<div class="container-fluid vh-100 bg-custom-gradient">
+  <div class="row h-100">
+    <div class="position-relative col-12 col-md-6 d-flex flex-column align-items-center justify-content-center bg-white custom-rounded-end shadow">
+      <div class="col-12 col-md-10 col-lg-8 p-4">
+        <div class="text-center mb-4">
+          <%= image_tag "logo-red.png", alt: 'logo focus', class: 'col-7 img-fluid p-4' %>
+          <h2>Welcome back</h2>
+          <p>Please enter your details.</p>
+        </div>
+        
+        <div id="errors"></div>
+
+        <%= yield :form %>
+    
+        <p class="text-center my-4">
+          <span>Don't have an account? </span>
+          <%= link_to "Sign up", new_registration_path(resource_name), class: 'link-dark link-offset-2 link-underline-opacity-10 link-underline-opacity-100-hover' %>
+        </p>
+      </div>
+    </div>
+    <div class="col-5 col-md-6 d-none d-md-flex flex-column align-items-end justify-content-end ">
+      <%= image_tag "inscription.png", alt: 'image statues modernes se prenant en selfie', class: 'img-fluid' %>
+    </div>
+  </div>
+</div>
