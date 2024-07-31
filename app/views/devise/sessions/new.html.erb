@@ -7,11 +7,14 @@
           <h2>Welcome back</h2>
           <p>Please enter your details.</p>
         </div>
-        
-        <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: 'needs-validation') do |f| %>
+
+        <%= form_for(resource, as: resource_name, url: new_user_session_path(resource_name), data: { turbo: true }, class: 'needs-validation') do |f| %>
           <div class="form-floating mb-3">
             <%= f.email_field :email, autofocus: true, autocomplete: "email", id: 'floatingInput', class: 'form-control', placeholder: "name@example.com" %>
             <%= f.label :email, "Email", for: 'floatingInput' %>
+            <div class="invalid-feedback">
+              <%= resource.errors[:email].first %>
+            </div>
           </div>
 
           <div class="form-floating mb-3">
@@ -43,7 +46,7 @@
       </div>
     </div>
     <div class="col-5 col-md-6 d-none d-md-block d-md-flex flex-column align-items-end justify-content-end ">
-      <%= image_tag "connexion.png", alt: 'image statues modernes se prenant en selfie', class: 'img-fluid' %>
+      <%= image_tag "connexion.png", alt: 'image statues modernes se prenant en selfie', class: 'img-fluid', style: "max-width: 60%;" %>
     </div>
   </div>
 </div>
