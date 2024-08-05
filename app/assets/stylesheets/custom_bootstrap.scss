@@ -3,6 +3,17 @@
 // Import Bootstrap
 @import "bootstrap/scss/bootstrap";
 
+@media (max-width: 768px) { /* Adjust breakpoint as needed */
+    body {
+        min-width: 320px; /* Set the desired minimum width */
+        overflow-x: auto; /* Allow horizontal scrolling if needed */
+    }
+    
+    .custom-rounded-end {
+        border-radius: 0.5rem; /* Adjust radius as needed */
+    }
+}
+
 .bg-custom-gradient {
     background: rgb(248,94,108);
     background: linear-gradient(170deg, rgba(248,94,108,1) 0%, rgba(200,67,76,1) 96%);
@@ -13,12 +24,11 @@
     border-bottom-right-radius: 2rem;
 }
 
-@media (max-width: 767px) { /* Adjust breakpoint as needed */
-    .custom-rounded-end {
-        border-radius: 0.5rem; /* Adjust radius as needed */
-    }
+.min-vh-100 {
+    min-height: 100vh!important;
 }
 
 .form-floating > label {
     color: $gray;
 }
+

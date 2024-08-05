@@ -1,0 +1,71 @@
+<%= turbo_frame_tag 'registration_form' do %>
+  <% if registration_form&.user&.errors.present? %>
+    <div class="alert alert-danger fade show" role='alert'>
+      <%= registration_form&.user&.errors.full_messages.join(' ,') %>
+    </div>
+  <% end %>
+  <%= form_with model: registration_form, url: user_registration_path, data: {turbo: false} do |f| %>
+    <div class="row">
+      <div class="col-6">
+        <div class="form-floating mb-3">
+          <%= f.text_field :name, autofocus: true, autocomplete: "name", id: 'floatingName', class: "form-control #{'is-invalid' if registration_form.errors[:name].present?}", placeholder: "Name" %>
+          <%= f.label :name, "Name", for: 'floatingName' %>
+          <% if registration_form.errors[:name].present? %>
+            <div class="invalid-feedback">
+              Name <%= registration_form.errors[:name].first %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="form-floating mb-3">
+          <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", id: 'floatingLastName', class: "form-control #{'is-invalid' if registration_form.errors[:last_name].present?}", placeholder: "Last name" %>
+          <%= f.label :last_name, "Last name", for: 'floatingLastName' %>
+          <% if registration_form.errors[:last_name].present? %>
+            <div class="invalid-feedback">
+              Last name <%= registration_form.errors[:last_name].first %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-floating mb-3">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", id: 'floatingEmail', class: "form-control #{'is-invalid' if registration_form.errors[:email].present?}", placeholder: "Email" %>
+      <%= f.label :email, "Email", for: 'floatingEmail' %>
+      <% if registration_form.errors[:email].present? %>
+        <div class="invalid-feedback">
+          Email <%= registration_form.errors[:email].first %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="form-floating mb-3">
+      <%= f.password_field :password, autofocus: true, autocomplete: "new-password", id: 'floatingPassword', class: "form-control #{'is-invalid' if registration_form.errors[:password].present?}", placeholder: "Password" %>
+      <%= f.label :password, "Password", for: 'floatingPassword' %>
+      <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %>
+      <% if registration_form.errors[:password].present? %>
+        <div class="invalid-feedback">
+          Password <%= registration_form.errors[:password].first %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="form-floating mb-3">
+      <%= f.password_field :password_confirmation, autofocus: true, autocomplete: "new-password", id: 'floatingPasswordConfirmation', class: "form-control #{'is-invalid' if registration_form.errors[:password_confirmation].present?}", placeholder: "Confirm your password" %>
+      <%= f.label :password_confirmation, "Confirm your password", for: 'floatingPasswordConfirmation' %>
+      <% if registration_form.errors[:password_confirmation].present? %>
+        <div class="invalid-feedback">
+          Password confirmation <%= registration_form.errors[:password_confirmation].first %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="d-grid gap-2 my-4">
+      <%= f.submit "Sign up", class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+<% end %>

@@ -3,6 +3,7 @@ class PostsController < ApplicationController
 
     def index
         @posts = Post.all
+        @post = Post.new
     end
 
     def create
@@ -14,13 +15,16 @@ class PostsController < ApplicationController
               format.turbo_stream
             end
         else
-            render :new
+          respond_to do |format|
+            format.html { redirect_to posts_path }
+            format.turbo_stream
+          end
         end
     end
 
     private
 
   def post_params
-    params.require(:post).permit(:content, :image)
+    params.require(:post).permit(:content, :image, :visibility)
   end
 end

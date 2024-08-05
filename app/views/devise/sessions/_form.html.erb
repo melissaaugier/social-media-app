@@ -1,0 +1,49 @@
+
+<%= turbo_frame_tag "session_form" do %>
+  
+  <% if notice %>
+    <p class="notice alert alert-info"><%= notice %></p>
+  <% end %>
+  
+  
+  <% if alert %>
+    <p class="alert alert-danger"><%= alert %></p>
+  <% end %>
+
+  <%= form_with model: resource, url: user_session_path, data: { turbo: false }, html: { novalidate: true } do |f| %>
+    <% f.hidden_field :id %>
+    <div class="form-floating mb-3">
+      <%= f.email_field :email, autocomplete: 'email', class: "form-control #{'is-invalid' if resource.errors[:email].present?}", id: 'floatingEmail', placeholder: 'john-smith@yahoo.com' %>
+      <%= f.label :email, 'Email', for: 'floatingEmail' %>
+      <% if resource.errors[:email].present? %>
+        <div class="invalid-feedback">
+          Email <%= resource.errors[:email].first %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="form-floating mb-3">
+      <%= f.password_field :password, autocomplete: 'password', id: 'floatingPassword', class: "form-control #{'is-invalid' if resource.errors[:password].present?}", placeholder: 'Password' %>
+      <%= f.label :password, 'Password', for: 'floatingPassword' %>
+      <% if resource.errors[:password].present? %>
+        <div class="invalid-feedback">
+          Password <%= resource.errors[:password].first %>
+        </div>
+      <% end %>
+      <div class="text-end">
+        <%= link_to 'Forgot your password →', new_password_path(resource_name), class: 'link-dark text-muted link-offset-2 link-underline-opacity-10 link-underline-opacity-100-hover' %>
+      </div>
+    </div>
+
+    <% if devise_mapping.rememberable? %>
+      <div class="form-check form-switch my-4">
+        <%= f.check_box :remember_me, role: 'switch', class: 'form-check-input', id: 'rememberMeSwitch' %>
+        <%= f.label :remember_me, class: 'form-check-label', for: 'rememberMeSwitch' %>
+      </div>
+    <% end %>
+
+    <div class="d-grid gap-2 my-4">
+      <%= f.submit 'Sign in', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+<% end %>

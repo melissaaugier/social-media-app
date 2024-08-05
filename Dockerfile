@@ -1,7 +1,7 @@
 FROM ruby:3.3.1
 
 # Install dependencies
-RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
+RUN apt-get update -qq && apt-get install -y nodejs postgresql-client yarn git
 
 # Set the working directory
 WORKDIR /social_media_app
